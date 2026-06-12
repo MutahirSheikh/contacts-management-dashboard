@@ -71,7 +71,7 @@ Ensure you have [Node.js](https://nodejs.org/) installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/contacts-management-dashboard.git
+   git clone https://github.com/MutahirSheikh/contacts-management-dashboard.git
    cd contacts-management-dashboard
    ```
 
