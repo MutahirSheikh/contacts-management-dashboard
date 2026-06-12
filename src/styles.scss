@@ -1,0 +1,108 @@
+/* Design System and Variables */
+:root {
+  --primary-color: #6C5DD3;
+  --primary-hover: #5a4dbf;
+  --primary-light: #F0EDFF;
+  --sidebar-bg: #FAF9FF; /* very light lavender gray background */
+  --body-bg: #FFFFFF;
+  --border-color: #ECECF5;
+  
+  --text-dark: #1F1D2B;
+  --text-medium: #808191;
+  --text-light: #B2B3BD;
+  
+  --status-online: #4BAC50;
+  --status-away: #FD9A13;
+  --status-offline: #FF5B5B;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px rgba(108, 93, 211, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  
+  --font-family: 'Inter', sans-serif;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--body-bg);
+  color: var(--text-dark);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E4E4F2;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D1E9;
+}
+
+/* Utility Classes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.badge-primary-light {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+/* Action button icons in contacts list and detail headers */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--body-bg);
+  color: var(--text-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  outline: none;
+  
+  &:hover {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-light);
+  }
+}
+
+.icon-btn-active {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-light);
+}

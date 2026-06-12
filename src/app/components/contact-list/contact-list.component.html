@@ -1,0 +1,96 @@
+<div class="sidebar-container">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <div class="header-left">
+      <button class="icon-btn" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="header-title">Contacts</h1>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn nav-arrow" aria-label="Previous">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="icon-btn nav-arrow" aria-label="Next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-label">Search for a contact</div>
+    <div class="search-input-wrapper">
+      <input 
+        type="text" 
+        [ngModel]="searchQuery" 
+        (ngModelChange)="onSearch($event)"
+        placeholder="Name, email or phone number"
+        class="search-input"
+      />
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+  </div>
+
+  <!-- Contacts List -->
+  <div class="contacts-list-scroll">
+    <div 
+      *ngFor="let contact of filteredContacts$ | async" 
+      class="contact-item"
+      [class.selected]="(selectedContact$ | async)?.id === contact.id"
+      (click)="selectContact(contact)"
+    >
+      <!-- Avatar / Status Column -->
+      <div class="avatar-column">
+        <ng-container *ngIf="contact.avatarUrl; else noAvatar">
+          <div class="avatar-wrapper">
+            <img [src]="contact.avatarUrl" [alt]="contact.firstName" class="avatar-img" />
+            <span class="status-dot dot-corner" [ngClass]="contact.status"></span>
+          </div>
+        </ng-container>
+        <ng-template #noAvatar>
+          <div class="avatar-placeholder-container">
+            <span class="status-dot dot-center" [ngClass]="contact.status"></span>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Info Column -->
+      <div class="info-column">
+        <div class="contact-name">{{ contact.firstName }} {{ contact.lastName }}</div>
+        <div class="contact-role">{{ contact.role }}</div>
+      </div>
+
+      <!-- Quick Actions Column -->
+      <div class="actions-column">
+        <button 
+          class="action-btn" 
+          [class.active]="(selectedContact$ | async)?.id === contact.id"
+          aria-label="Message"
+        >
+          <i class="fa-solid fa-comment-dots"></i>
+        </button>
+        <button 
+          class="action-btn" 
+          [class.active]="(selectedContact$ | async)?.id === contact.id"
+          aria-label="Call"
+        >
+          <i class="fa-solid fa-phone"></i>
+        </button>
+        <button 
+          class="action-btn" 
+          [class.active]="(selectedContact$ | async)?.id === contact.id"
+          aria-label="More"
+        >
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Empty State -->
+    <div *ngIf="((filteredContacts$ | async) || []).length === 0" class="empty-state">
+      <i class="fa-solid fa-user-slash empty-icon"></i>
+      <p>No contacts found matching your search</p>
+    </div>
+  </div>
+</div>

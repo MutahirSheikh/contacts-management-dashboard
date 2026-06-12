@@ -1,0 +1,266 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid var(--border-color);
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    gap: 8px;
+    
+    .nav-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      font-size: 12px;
+      background: var(--body-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+      
+      &:hover {
+        background: var(--primary-light);
+        color: var(--primary-color);
+        border-color: var(--primary-light);
+      }
+    }
+  }
+}
+
+/* Search Section */
+.search-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .search-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-light);
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-input {
+      width: 100%;
+      padding: 12px 40px 12px 0px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      background: transparent;
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        color: var(--text-dark);
+        opacity: 0.9;
+        font-weight: 600;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 4px;
+      color: var(--text-dark);
+      font-size: 16px;
+      pointer-events: none;
+    }
+  }
+}
+
+/* Contacts Scroll Area */
+.contacts-list-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px 24px 12px;
+}
+
+/* Contact Item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 12px;
+  margin-bottom: 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+
+  &:hover {
+    background-color: rgba(108, 93, 211, 0.03);
+  }
+
+  &.selected {
+    background-color: var(--body-bg);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* Avatar Column */
+.avatar-column {
+  width: 48px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+
+  .avatar-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.avatar-placeholder-container {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Status Dots */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+
+  &.online {
+    background-color: var(--status-online);
+  }
+  &.away {
+    background-color: var(--status-away);
+  }
+  &.offline {
+    background-color: var(--status-offline);
+  }
+}
+
+.dot-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1.5px solid var(--body-bg);
+}
+
+.dot-center {
+  width: 7px;
+  height: 7px;
+}
+
+/* Info Column */
+.info-column {
+  flex: 1;
+  min-width: 0;
+  padding-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .contact-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .contact-role {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Actions Column */
+.actions-column {
+  display: flex;
+  gap: 8px;
+  padding-left: 8px;
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background: var(--body-bg);
+    color: var(--text-medium);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+
+    &:hover {
+      background: var(--primary-light);
+      color: var(--primary-color);
+    }
+
+    &.active {
+      background: var(--primary-light);
+      color: var(--primary-color);
+      box-shadow: none;
+    }
+  }
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-light);
+
+  .empty-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

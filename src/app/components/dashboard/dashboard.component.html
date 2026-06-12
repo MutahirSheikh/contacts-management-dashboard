@@ -1,0 +1,19 @@
+<div class="dashboard-layout" [class.mobile-show-details]="selectedContact$ | async">
+  <!-- Left Side: Contact List -->
+  <div class="list-pane">
+    <app-contact-list></app-contact-list>
+  </div>
+  
+  <!-- Right Side: Contact Details -->
+  <div class="details-pane">
+    <!-- Back Button for Mobile Portrait/Small Screens -->
+    <div class="mobile-back-bar">
+      <button (click)="goBackToList()" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to contacts</span>
+      </button>
+    </div>
+    
+    <app-contact-details></app-contact-details>
+  </div>
+</div>

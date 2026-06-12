@@ -1,0 +1,120 @@
+<div class="details-container">
+  <!-- Selected Contact Details -->
+  <ng-container *ngIf="contact$ | async as contact; else noContactSelected">
+    
+    <!-- Profile Header Section -->
+    <div class="profile-header">
+      <div class="profile-avatar-wrapper">
+        <img *ngIf="contact.avatarUrl" [src]="contact.avatarUrl" [alt]="contact.firstName" class="profile-avatar" />
+        <div *ngIf="!contact.avatarUrl" class="profile-avatar-placeholder">
+          {{ getInitials(contact) }}
+        </div>
+      </div>
+      
+      <div class="profile-title-area">
+        <h2 class="profile-name">{{ contact.firstName }} {{ contact.lastName }}</h2>
+        <p class="profile-role">UI/UX Designer</p>
+        
+        <!-- Action Buttons -->
+        <div class="header-actions">
+          <button class="message-btn">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span>Message</span>
+          </button>
+          <button class="circle-action-btn" aria-label="Call">
+            <i class="fa-solid fa-phone"></i>
+          </button>
+          <button class="circle-action-btn" aria-label="Calendar">
+            <i class="fa-regular fa-calendar"></i>
+          </button>
+          <button class="circle-action-btn" aria-label="More options">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Grid Section -->
+    <div class="details-grid">
+      <!-- Bio Row -->
+      <div class="grid-row">
+        <div class="row-label">Bio</div>
+        <div class="row-value bio-text">{{ contact.bio }}</div>
+      </div>
+
+      <!-- Email Row -->
+      <div class="grid-row">
+        <div class="row-label">Email</div>
+        <div class="row-value">
+          <div *ngFor="let email of emails$ | async" class="value-item">
+            <span class="value-text">{{ email.email }}</span>
+            <span *ngIf="email.isPrimary" class="badge badge-primary-light">Primary</span>
+          </div>
+          <!-- Loader for email address sub-request -->
+          <div *ngIf="(loading$ | async) && ((emails$ | async) || []).length === 0" class="mini-loader">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Loading emails...
+          </div>
+        </div>
+      </div>
+
+      <!-- Dial Row -->
+      <div class="grid-row">
+        <div class="row-label">Dial</div>
+        <div class="row-value">
+          <span class="value-text">{{ contact.dialUsername }}</span>
+        </div>
+      </div>
+
+      <!-- Meeting Row -->
+      <div class="grid-row">
+        <div class="row-label">Meeting</div>
+        <div class="row-value">
+          <a [href]="contact.meetingUrl" target="_blank" class="meeting-link">{{ contact.meetingUrl }}</a>
+        </div>
+      </div>
+
+      <!-- Phone Row -->
+      <div class="grid-row">
+        <div class="row-label">Phone</div>
+        <div class="row-value">
+          <div *ngFor="let phone of contact.phones" class="value-item">
+            <span class="value-text">{{ phone.number }}</span>
+            <span *ngIf="phone.isPrimary" class="badge badge-primary-light">Primary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Row -->
+      <div class="grid-row">
+        <div class="row-label">Social</div>
+        <div class="row-value social-icons">
+          <a *ngIf="contact.socials.facebook" [href]="contact.socials.facebook" class="social-circle" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a *ngIf="contact.socials.pinterest" [href]="contact.socials.pinterest" class="social-circle" aria-label="Pinterest">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+          <a *ngIf="contact.socials.twitter" [href]="contact.socials.twitter" class="social-circle" aria-label="Twitter">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a *ngIf="contact.socials.linkedin" [href]="contact.socials.linkedin" class="social-circle" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a *ngIf="contact.socials.google" [href]="contact.socials.google" class="social-circle" aria-label="Google">
+            <i class="fa-brands fa-google"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <!-- No Contact Selected Fallback -->
+  <ng-template #noContactSelected>
+    <div class="no-contact-selected">
+      <i class="fa-solid fa-address-book fallback-icon"></i>
+      <h3>Select a Contact</h3>
+      <p>Choose a contact from the list on the left to display their full profile and email details.</p>
+    </div>
+  </ng-template>
+</div>
